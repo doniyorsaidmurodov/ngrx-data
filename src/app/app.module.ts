@@ -8,13 +8,15 @@ import {SinglePostComponent} from './posts/single-post/single-post.component';
 import {EditPostComponent} from './posts/edit-post/edit-post.component';
 import {AddPostComponent} from './posts/add-post/add-post.component';
 import {HomeComponent} from './home/home.component';
-import { EntityDataModule } from '@ngrx/data';
-import { entityConfig } from './entity-metadata';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import {EntityDataModule, EntityDataService} from '@ngrx/data';
+import {entityConfig} from './entity-metadata';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 import {HttpClientModule} from "@angular/common/http";
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {PostsDataService} from "./services/posts-data.service";
+import {PostsResolver} from "./services/posts.resolver";
 
 @NgModule({
   declarations: [
@@ -29,13 +31,19 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
   ],
-  providers: [],
+  providers: [PostsDataService, PostsResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(
+    entityDataService: EntityDataService,
+    PostsDataService: PostsDataService
+  ) {
+    entityDataService.registerService('Post', PostsDataService)
+  }
 }

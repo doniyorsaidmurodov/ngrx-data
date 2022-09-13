@@ -17,6 +17,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {PostsDataService} from "./services/posts-data.service";
 import {PostsResolver} from "./services/posts.resolver";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {PostsResolver} from "./services/posts.resolver";
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production})
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    ReactiveFormsModule
   ],
   providers: [PostsDataService, PostsResolver],
   bootstrap: [AppComponent]

@@ -17,4 +17,10 @@ export class PostsListComponent implements OnInit {
     this.posts$ = this.postService.entities$;
   }
 
+  deletePost($event: Event, id: string) {
+    $event.preventDefault();
+    if (confirm('Are you sure to delete the post?')) {
+      this.postService.delete(id);
+    }
+  }
 }

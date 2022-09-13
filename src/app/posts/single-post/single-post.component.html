@@ -1,1 +1,10 @@
-<p>single-post works!</p>
+<div>
+  <h3>Post Details</h3>
+  <a routerLink="/posts">Go to posts</a>
+  <hr>
+</div>
+<div *ngIf="post">
+  <div>ID: {{post.id}}</div>
+  <div>Title: {{post.title}}</div>
+  <div>Description: {{post.description}}</div>
+</div>

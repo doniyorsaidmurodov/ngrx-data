@@ -37,4 +37,13 @@ export class PostsDataService extends DefaultDataService<Post> {
   override update(post: Update<Post>): Observable<Post> {
     return this.http.put<Post>(`https://todos-81b5e-default-rtdb.firebaseio.com/posts/${post.id}.json`, {...post.changes});
   }
+
+  override delete(id: string): Observable<string> {
+    return this.http.delete(`https://todos-81b5e-default-rtdb.firebaseio.com/posts/${id}.json`)
+      .pipe(
+        map(data => {
+          return id
+        })
+      );
+  }
 }

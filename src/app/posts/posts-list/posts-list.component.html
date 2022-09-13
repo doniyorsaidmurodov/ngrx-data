@@ -23,7 +23,8 @@
     <td>{{post.description}}</td>
     <td>
       <button class="btn btn-primary me-2" [routerLink]="['edit', post.id]">Edit Post</button>
-      <button class="btn btn-danger">Delete Post</button>
+      <button class="btn btn-outline-primary me-2" [routerLink]="['details', post.id]">View Details</button>
+      <button class="btn btn-danger" (click)="deletePost($event, post.id)">Delete Post</button>
     </td>
   </tr>
   </tbody>

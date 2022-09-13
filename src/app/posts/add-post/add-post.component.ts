@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./add-post.component.scss']
 })
 export class AddPostComponent implements OnInit {
-  formData: FormGroup;
+  addPostForm: FormGroup;
 
   constructor(
     private postService: PostService,
@@ -19,18 +19,18 @@ export class AddPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formData = new FormGroup({
+    this.addPostForm = new FormGroup({
       title: new FormControl(null),
       description: new FormControl(null),
     })
   }
 
   onAddPost() {
-    if (this.formData.invalid) {
+    if (this.addPostForm.invalid) {
       return;
     }
 
-    const post: Post = this.formData.value;
+    const post: Post = this.addPostForm.value;
 
     const isEmpty = Object.values(post).some(val => {
       return val === null;

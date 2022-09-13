@@ -13,6 +13,7 @@
       <th>ID</th>
       <th>Title</th>
       <th>Description</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,10 @@
     <td>{{post.id}}</td>
     <td>{{post.title}}</td>
     <td>{{post.description}}</td>
+    <td>
+      <button class="btn btn-primary me-2" [routerLink]="['edit', post.id]">Edit Post</button>
+      <button class="btn btn-danger">Delete Post</button>
+    </td>
   </tr>
   </tbody>
 </table>

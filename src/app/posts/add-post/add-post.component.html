@@ -3,7 +3,7 @@
   <hr>
 </div>
 
-<form [formGroup]="formData" (ngSubmit)="onAddPost()">
+<form [formGroup]="addPostForm" (ngSubmit)="onAddPost()">
   <div>
     <label for="title">Title</label>
     <input class="form-control" type="text" id="title" formControlName="title">
